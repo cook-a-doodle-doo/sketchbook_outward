@@ -1,0 +1,153 @@
+
+void setup(){
+  size(1000, 1000);
+  background(255);
+
+  int WIDTH_MARGIN  = 10;
+  int HEIGHT_MARGIN = 10;
+  int numX = 17;
+  int numY = 12;
+
+//  divRect(WIDTH_MARGIN, HEIGHT_MARGIN, numX, numY, width-2*WIDTH_MARGIN);
+  divSquare(WIDTH_MARGIN, HEIGHT_MARGIN, numX, numY, width-2*WIDTH_MARGIN, 10);
+
+  /*
+  int WIDTH_MAX  = width  - 2*WIDTH_MARGIN;
+  int HEIGHT_MAX = height - 2*HEIGHT_MARGIN;
+  
+  int w = 7;
+  int h = 16;
+  
+  float mag_w = float(WIDTH_MAX) / w;
+  float mag_h = float(HEIGHT_MAX)/ h;
+  
+  float mag;
+  float xPos;
+  float yPos;
+  float squLen;
+  
+  if(mag_w < mag_h){
+  //if(WIDTH_MAX*h < HEIGHT_MAX*w){
+    mag    = mag_w;
+    xPos   = WIDTH_MARGIN;
+    yPos   = (height - h*mag)/2.0;
+  }else{
+    mag    = mag_h;
+    xPos   = (width  - w*mag)/2.0;
+    yPos   = HEIGHT_MARGIN;
+  }
+  
+  //rect(xPos, yPos, mag*w, mag*h);
+  
+  int tmp;
+  for(int i=0;;i++){
+    tmp = w % h;
+    println(i + ":(w:" + w + ", h:" + h + ")");
+    squLen = mag*h;
+    for(int j=0;j<w/h;j++){
+      switch(int(random(0,3))){
+        case 0:
+          fill(255, 255*exp(-0.2*i), 255*exp(-0.2*i));
+          break;
+        case 1:
+          fill(255*exp(-0.2*i), 255, 255*exp(-0.2*i));
+          break;
+        case 2:
+          fill(255*exp(-0.2*i), 255*exp(-0.2*i), 255);
+          break;
+      }
+      rect(xPos,yPos, squLen, squLen);
+      if(i%2 == 0){
+        xPos += squLen;
+      }else{
+        yPos += squLen;
+      }
+    }
+    if(tmp == 0)break;
+    w = h;
+    h = tmp;
+    }
+    println("最大公約数" + h);
+    */
+}
+  
+void divSquare(float xPos, float yPos ,int numX, int numY, float edge, float threshold){
+  float mag_w  = edge/numX;
+  float mag_h  = edge/numY;
+  float edge_w;
+  float edge_h;
+  int tmp;
+  int a = numX;
+  int b = numY;
+
+  for(int i=0;;i++){
+    tmp  = a % b;
+    edge_w = mag_w*b;
+    edge_h = mag_h*b;
+    for(int j=0;j<a/b;j++){
+      //draw rect or recursive call
+      if(edge_w < threshold || edge_h < threshold){
+        fill(myColor());
+        rect(xPos, yPos, edge_w, edge_h);
+      }else{
+        divRect(xPos, yPos, numY, numX, edge_w, threshold);
+      }
+
+      if(i%2 == 0){
+        xPos += edge_w;
+      }else{
+        yPos += edge_h;
+      }
+    }
+    if(tmp == 0)break;
+    a = b;
+    b = tmp;
+  }
+}
+
+void divRect(float xPos, float yPos ,int numX, int numY, float wSize, float threshold){
+  float mag  = wSize/numX;
+  float edge;
+  int tmp;
+  int a = numX;
+  int b = numY;
+
+  for(int i=0;;i++){
+    tmp  = a % b;
+    edge = mag*b;
+    for(int j=0;j<a/b;j++){
+      if(edge < threshold){
+        fill(myColor());
+        rect(xPos, yPos, edge, edge);
+      }else{
+        divSquare(xPos, yPos, numX, numY, edge, threshold);
+      }
+      if(i%2 == 0){
+        xPos += edge;
+      }else{
+        yPos += edge;
+      }
+    }
+    if(tmp == 0)break;
+    a = b;
+    b = tmp;
+  }
+}
+
+color myColor(){
+  float c = random(80, 255);
+  switch(int(random(0,6))){
+    case 0:
+      return color(c, 255, 255);
+    case 1:
+      return color(255, c, 255);
+    case 2:
+      return color(255, 255, c);
+    case 3:
+      return color(255, c, c);
+    case 4:
+      return color(c, 255, c);
+    default:
+      return color(c, c, 250);
+  }
+}
