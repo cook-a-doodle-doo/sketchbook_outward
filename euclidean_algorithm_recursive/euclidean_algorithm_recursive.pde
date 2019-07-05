@@ -10,7 +10,7 @@ void setup(){
 void draw(){
   int numX = int(random(5, 50));
   int numY = int(random(5, 50));
-  float threshold = random(10,40);
+  float threshold = random(10,80);
   println("numX:" + numX);
   println("numY:" + numY);
   println("thre:" + threshold + "\n");
