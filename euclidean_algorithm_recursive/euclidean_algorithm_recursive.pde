@@ -1,15 +1,22 @@
+int WIDTH_MARGIN  = 10;
+int HEIGHT_MARGIN = 10;
+
 void setup(){
   size(1000, 1000);
   background(255);
-
-  int WIDTH_MARGIN  = 10;
-  int HEIGHT_MARGIN = 10;
-  int numX = 17;
-  int numY = 12;
-
-  divSquare(WIDTH_MARGIN, HEIGHT_MARGIN, numX, numY, width-2*WIDTH_MARGIN, 8);
+  frameRate(40/60.0);
 }
-  
+
+void draw(){
+  int numX = int(random(5, 50));
+  int numY = int(random(5, 50));
+  float threshold = random(10,40);
+  println("numX:" + numX);
+  println("numY:" + numY);
+  println("thre:" + threshold + "\n");
+  divSquare(WIDTH_MARGIN, HEIGHT_MARGIN, numX, numY, width-2*WIDTH_MARGIN, threshold);
+}
+
 
 void divSquare(float xPos, float yPos ,int numX, int numY, float edge, float threshold){
   float mag_w  = edge/numX;
@@ -19,6 +26,12 @@ void divSquare(float xPos, float yPos ,int numX, int numY, float edge, float thr
   int tmp;
   int a = numX;
   int b = numY;
+
+  if(numX == numY){
+    fill(myColor());
+    rect(xPos, yPos, edge, edge);
+    return;
+  }
 
   for(int i=0;;i++){
     tmp  = a % b;
@@ -52,6 +65,13 @@ void divRect(float xPos, float yPos ,int numX, int numY, float wSize, float thre
   int tmp;
   int a = numX;
   int b = numY;
+
+  if(numX == numY){
+    fill(myColor());
+    rect(xPos, yPos, wSize, wSize);
+    return;
+  }
+
 
   for(int i=0;;i++){
     tmp  = a % b;
