@@ -68,44 +68,6 @@ void divRect_float(float xPos, float yPos, float w, float h, float threshold){
   }
 }
 
-/*
-void divRect(float xPos, float yPos ,int numX, int numY, float wSize, float threshold){
-  float mag  = wSize/numX;
-  float edge;
-  int tmp;
-  int a = numX;
-  int b = numY;
-
-  if(numX == numY){
-    fill(myColor());
-    rect(xPos, yPos, wSize, wSize);
-    return;
-  }
-
-
-  for(int i=0;;i++){
-    tmp  = a % b;
-    edge = mag*b;
-    for(int j=0;j<a/b;j++){
-      if(edge < threshold){
-        fill(myColor());
-        rect(xPos, yPos, edge, edge);
-      }else{
-        divSquare(xPos, yPos, numX, numY, edge, threshold);
-      }
-      if(i%2 == 0){
-        xPos += edge;
-      }else{
-        yPos += edge;
-      }
-    }
-    if(tmp == 0)break;
-    a = b;
-    b = tmp;
-  }
-}
-
-*/
 color myColor(){
   float c = random(80, 255);
   switch(int(random(0,6))){
