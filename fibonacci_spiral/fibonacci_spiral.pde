@@ -1,5 +1,5 @@
 
-int FRAME = 8;
+int FRAME = 100;
 
 void setup(){
   size(1000, 1000);
@@ -9,8 +9,9 @@ void setup(){
 
 void draw(){
   background(255);
-  float mag = float(frameCount)/FRAME;
-  frameCount%=10*FRAME;
+  //float mag = (1 + 1.0/FRAME) * frameCount;
+  float mag = (1 + float(frameCount)/FRAME);
+  frameCount%=6*FRAME;
   scale(mag);
 
   strokeWeight(1/mag);
