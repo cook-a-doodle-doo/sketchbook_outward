@@ -2,16 +2,16 @@ PVector[] vecs = new PVector[4];
 
 void setup(){
   size(1000, 1000);
-  frameRate(5);
+  frameRate(60);
 }
 
 void draw(){
   background(255);
   resetVec(vecs);
-  for(;;){
+  for(int i=0;i<20;i++){
     drawSpuare(vecs);
-    vecs = nextVecs(vecs, 0.5/(frameCount+1));
-    if(PVector.dist(vecs[1], vecs[0]) < 10)break;
+    vecs = nextVecs(vecs, 1 - 1*exp(-0.005*frameCount));
+    //if(PVector.dist(vecs[1], vecs[0]) < 10)break;
   }
 }
 
