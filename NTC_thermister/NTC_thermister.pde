@@ -1,5 +1,5 @@
 float B_CONS   = 3435;
-float RES      = 8002;
+float RES      = 12000;
 float ANY_TEMP = 25 + 273.15;
 float ANY_TEMP_RES  = 10000;
 
@@ -7,10 +7,10 @@ void setup(){
   frameRate(2);
 }
 
-//部分抵抗と全体抵抗,全体電圧から部分電圧を求める
+//素子の抵抗と全体抵抗,全体電圧から部分電圧を求める
 //未テスト
 float volts_partial(float res_partial, float res_all, float v_all){
-  return v_all * res_partial/(res_partial + res_all);
+  return v_all * res_partial / res_all;
 }
 
 //戻り値，引数共にセ氏
