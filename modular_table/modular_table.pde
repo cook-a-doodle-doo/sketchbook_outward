@@ -1,7 +1,7 @@
 
 size(1000, 1000);
 
-int n = 11*5*7;
+int n = 277;
 
 if(args != null){
   n = int(args[0]);
@@ -12,6 +12,7 @@ float x,y,rad;
 float text_size = step/2.0;
 
 fill(0);
+if(text_size < 2)text_size = 1;
 textSize(text_size);
 
 for(int k=0;k<n;k++){
