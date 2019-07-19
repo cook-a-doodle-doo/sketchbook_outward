@@ -1,7 +1,7 @@
 
 size(1000, 1000);
 
-int n = 8;
+int n = 119;
 
 if(args != null){
   n = int(args[0]);
@@ -25,7 +25,7 @@ for(int i=1;i<n;i++){
   for(int j=1;j<n;j++){
     x = step*(j+1);
     y = step*(i+1);
-    float important = pow(i, j);
+    float important = i*j;
     rad = step*(5.0/5) * (important%n + 1) / n;
     ellipse(x, y, rad, rad);
   }
