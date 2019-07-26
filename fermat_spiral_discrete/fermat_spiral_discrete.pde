@@ -4,8 +4,9 @@ void setup(){
 }
 
 void draw(){
-  float rot   = 17/55.0;
-  //float rot   = sqrt(5);
+//  float rot   = 17/55.0;
+  float rot   = (1 + sqrt(5)) / 2.0;
+
   float theta = frameCount * 2*PI * rot;
   float r     = 30 / rot;
   r/=4;
